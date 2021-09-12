@@ -4,11 +4,14 @@ import ReactDOM from 'react-dom';
 import './scss/app.scss';
 
 import App from './App';
+import { BrowserRouter, Route} from 'react-router-dom';
 
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+    <Route exact path="/" component={App}/>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );
