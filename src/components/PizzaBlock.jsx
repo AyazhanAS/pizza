@@ -1,14 +1,22 @@
 import React, { useState } from 'react'
+import classNames from "classnames"
+import PropTypes from "prop-types"
+
+export default function PizzaBlock({name, price, imageUrl, types, sizes}) {
 
 
-export default function PizzaBlock({name, price, imageUrl, types}) {
+  const [activeType, setActiveType] = useState(types[0])
+  const [activeSize, setActiveSize] = useState(sizes[0])
 
-
-  const [activeType, setActiveType] = useState(0)
   const typeNames = ["тонкое", "традиционное"]
+  const availabeSizes = [26, 30, 40]
 
   const selectType = (index)=>{
     setActiveType(index)
+  }
+
+  const selectSize = (index)=>{
+    setActiveSize(index)
   }
 
 
@@ -26,13 +34,22 @@ export default function PizzaBlock({name, price, imageUrl, types}) {
             <li 
             key={type}
             onClick={()=>selectType(index)}
-            className={activeType===index?"active": ""}>{type}</li>
+            className={classNames({
+              active: activeType === index,
+              disabled: !types.includes(index)
+            })}>{type}</li>
             ))}
           </ul>
           <ul>
-            <li className="active">26 см.</li>
-            <li>30 см.</li>
-            <li className="disabled">40 см.</li>
+          {availabeSizes.map((size, index)=>(
+            <li 
+            key={size}
+            onClick={()=>selectSize(index)}
+            className={classNames({
+              active: activeSize === index,
+              disabled: !sizes.includes(size)
+            })}>{size} см. </li>
+            ))}
           </ul>
         </div>
         <div className="pizza-block__bottom">
