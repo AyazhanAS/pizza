@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+ import { useEffect, useState } from "react";
 import { Route } from "react-router-dom"
 import axios from "axios"
 
@@ -14,10 +14,10 @@ function App() {
 
   useEffect(()=>{
     axios.get("http://localhost:3000/db.json").then(({data})=>{
-      setPizzas(data.pizzas)
+      setPizzas(data.pizzas) 
     })
   }, [])
- console.log(pizzas)
+ 
   return (
     <div className="App">
       <div className="wrapper">

@@ -7,8 +7,10 @@ function SortPopup({items}) {
     const [show, setShow] = useState(false)
 
     const sortRef = useRef()
-    
 
+    const activeLabel = items[activeItem].name
+      
+   
     const toggleShowPopup = ()=>{
         setShow(!show)
     }
@@ -48,15 +50,16 @@ function SortPopup({items}) {
             />
           </svg>
           <b>Сортировка по:</b>
-          <span onClick = {toggleShowPopup}>{items[activeItem]}</span>
+          <span onClick = {toggleShowPopup}>{activeLabel}</span>
         </div>
         {show && <div className="sort__popup">
           <ul>
             {items&&
-            items.map((item,index)=>(
+            items.map((obj,index)=>(
                 <li 
                 onClick={()=>onSelectItem(index)}
-                className={activeItem===index?"active":""} key = {`${item}_${index}`}>{item}</li>
+                className={activeItem===index?"active":""} 
+                key = {`${obj.type}_${index}`}>{obj.name}</li>
             ))
             }
           </ul>
